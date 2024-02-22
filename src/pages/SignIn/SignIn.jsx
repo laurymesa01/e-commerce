@@ -1,10 +1,10 @@
-
+import { Layout } from "../../components/Layout/Layout";
 
 function SignIn() {
   return (
-    <div>
+    <Layout>
       SignIn
-    </div>
+    </Layout>
   )
 }
 
