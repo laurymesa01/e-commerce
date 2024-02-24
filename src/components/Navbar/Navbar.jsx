@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { ShoppingCartContext } from "../../context/Context"
 
 const Navbar = () => {
+
+    const { counter } = useContext(ShoppingCartContext);
 
     const activeStyle = 'underline underline-offset-4'
     
@@ -126,7 +130,7 @@ const Navbar = () => {
                                 isActive ? activeStyle : undefined
                             
                         }>
-                        🛒0
+                        🛒{ counter }
                     </NavLink>
                 </li>
             </ul>
