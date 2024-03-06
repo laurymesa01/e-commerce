@@ -4,12 +4,17 @@ import { ShoppingCartContext } from "../../context/Context";
 /* eslint-disable react/prop-types */
 const Card = (props) => {
 
-    const { counter, setCounter, openProductDetail } = useContext(ShoppingCartContext);
+    const { counter, setCounter, openProductDetail, setProductToShow } = useContext(ShoppingCartContext);
+
+    const showProduct = (productDetail) =>{
+        openProductDetail();
+        setProductToShow(productDetail);
+    }
 
 
     return (
         <div    className="bg-white cursor-pointer w-56 h-60" 
-                onClick={() => openProductDetail()}>
+                onClick={() => showProduct(props.data)}>
             <figure className="relative mb-3 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 bg-black/50 rounded-lg text-white text-xs m-2 px-3 py-0.5">{props.data.category.name}</span>
                 <img className="w-full h-full object-cover rounded-lg" src = {props.data.images[0]} alt={props.data.category.name} />
@@ -24,7 +29,7 @@ const Card = (props) => {
             </figure>
             <p className="flex justify-between">
                 <span className="text-sm font-light">{props.data.title}</span>
-                <span className="text-lg font-bold">{props.data.price}</span>
+                <span className="text-lg font-bold">${props.data.price}</span>
             </p>
         </div>
     )
