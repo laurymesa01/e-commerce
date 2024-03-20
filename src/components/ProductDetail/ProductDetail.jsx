@@ -20,7 +20,7 @@ const ProductDetail = () => {
             <div className="flex overflow-y-auto flex-col mt-6">
                 <figure>
                     <img    className="w-full h-full rounded-lg" 
-                            src = {productToShow.images[0]} 
+                            src = {productToShow.images?.[0]} 
                             alt = {productToShow.title} 
                     />
                 </figure>
