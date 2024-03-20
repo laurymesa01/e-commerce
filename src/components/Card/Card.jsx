@@ -4,16 +4,25 @@ import { ShoppingCartContext } from "../../context/Context";
 /* eslint-disable react/prop-types */
 const Card = (props) => {
 
-    const { counter, setCounter, openProductDetail, setProductToShow, shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+    const { counter, 
+            setCounter, 
+            openProductDetail, 
+            setProductToShow, 
+            shoppingCart, 
+            setShoppingCart, 
+            openCheckoutSideMenu 
+        } = useContext(ShoppingCartContext);
 
     const showProduct = (productDetail) =>{
         openProductDetail();
         setProductToShow(productDetail);
     }
 
-    const addProductsToCart = (productData) => {
+    const addProductsToCart = (productData, event) => {
+        event.stopPropagation();
         setCounter(counter + 1);
         setShoppingCart([...shoppingCart, productData]);
+        openCheckoutSideMenu();
     }
 
 
@@ -25,7 +34,7 @@ const Card = (props) => {
                 <img className="w-full h-full object-cover rounded-lg" src = {props.data.images[0]} alt={props.data.category.name} />
                 <button 
                     className="absolute top-0 right-0 flex justify-center items-center bg-white hover:bg-gray-200 text-black w-6 h-6 rounded-full m-2 p-1"
-                    onClick= { () => addProductsToCart(props.data) }>
+                    onClick= { (event) => addProductsToCart(props.data, event) }>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>

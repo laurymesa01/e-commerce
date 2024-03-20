@@ -10,6 +10,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 
 
 import './App.css';
+import { CheckoutSideMenu } from '../../components/CheckoutSideMenu/CheckoutSideMenu';
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -34,6 +35,10 @@ const AppRoutes = () => {
       element: <SignIn/>
     },
     {
+      path: '/checkout',
+      element: <CheckoutSideMenu/>
+    },
+    {
       path: '/*',
       element: <NotFound/>
     },
@@ -49,6 +54,7 @@ const App = () => {
       <BrowserRouter>
         <AppRoutes />
         <Navbar />
+        <CheckoutSideMenu/>
       </BrowserRouter>
     </ShoppingCartProvider>
 
