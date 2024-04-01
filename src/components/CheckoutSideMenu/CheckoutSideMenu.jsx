@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/Context";
+import { OrderCart } from "../OrderCart/OrderCart";
 
 const CheckoutSideMenu = () => {
 
-    const { isCheckoutSideMenu, closeCheckoutSideMenu } = useContext(ShoppingCartContext);
+    const { isCheckoutSideMenu, closeCheckoutSideMenu, shoppingCart } = useContext(ShoppingCartContext);
+    console.log(shoppingCart);
     
     return (
         <aside className={`${isCheckoutSideMenu ? 'flex' : 'hidden'} p-6 flex flex-col fixed right-0 top-[68px] border border-black rounded bg-white w-[360px] h-[calc(100vh-60px)]`}>
@@ -16,6 +18,18 @@ const CheckoutSideMenu = () => {
 
                 </button>
             </div>
+            <div className="overflow-y-scroll">
+                {
+                    shoppingCart.map(product => (
+                        <OrderCart  key = {product.id}
+                                    title = {product.title}
+                                    imageUrl = {product.images}
+                                    price = {product.price}
+                        />
+                    ))
+                }
+            </div>
+
             
         </aside>
     )
