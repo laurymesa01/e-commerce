@@ -4,8 +4,13 @@ import { OrderCart } from "../OrderCart/OrderCart";
 
 const CheckoutSideMenu = () => {
 
-    const { isCheckoutSideMenu, closeCheckoutSideMenu, shoppingCart } = useContext(ShoppingCartContext);
+    const { isCheckoutSideMenu, closeCheckoutSideMenu, shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
+    
     console.log(shoppingCart);
+    const handleDelete = (id) => {
+        const filtered = this.shoppingCart.filter(product => product.id != id);
+        setShoppingCart(filtered);
+    }
     
     return (
         <aside className={`${isCheckoutSideMenu ? 'flex' : 'hidden'} p-6 flex flex-col fixed right-0 top-[68px] border border-black rounded bg-white w-[360px] h-[calc(100vh-60px)]`}>
@@ -22,9 +27,11 @@ const CheckoutSideMenu = () => {
                 {
                     shoppingCart.map(product => (
                         <OrderCart  key = {product.id}
+                                    id = {product.id}
                                     title = {product.title}
                                     imageUrl = {product.images}
                                     price = {product.price}
+                                    handleDelete = {handleDelete}
                         />
                     ))
                 }
